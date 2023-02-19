@@ -1,0 +1,66 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+        Title="Calc" Height="450" Width="300 " MaxWidth="520" MaxHeight="520">
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="PreviousOperation" Grid.Row="0" Grid.ColumnSpan="4" FontSize="20" FontWeight="Light"   HorizontalAlignment="Right"  >
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1}">
+                    <Binding Path="NumToOperateWith" />
+                    <Binding Path="Operator" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock x:Name="Display" Grid.Row="1" Grid.ColumnSpan="4" FontSize="40" Text="0" HorizontalAlignment="Right"  />
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="2" Click="ButtonClicked"   Content="%"  />
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="2"   Click="ButtonClicked"  Content="CE"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="2"   Click="ButtonClicked"  Content="C"/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="2"   Click="ButtonClicked"  Content="DEL"/>
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="3"   Click="ButtonClicked"  Content="1/x"/>
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="3"   Click="ButtonClicked"  Content="X^2"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="3"   Click="ButtonClicked"  Content="X^-2"/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="3"   Click="ButtonClicked"  Content="/"/>
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="4"   Click="ButtonClicked"  Content="7"/>
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="4"   Click="ButtonClicked"  Content="8"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="4"   Click="ButtonClicked"  Content="9"/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="4"   Click="ButtonClicked"  Content="X"/>
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="5"   Click="ButtonClicked"  Content="4"/>
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="5"   Click="ButtonClicked"  Content="5"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="5"   Click="ButtonClicked"  Content="6"/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="5"   Click="ButtonClicked"  Content="-"/>
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="6"   Click="ButtonClicked"  Content="1"/>
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="6"   Click="ButtonClicked"  Content="2"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="6"   Click="ButtonClicked"  Content="3"/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="6"   Click="ButtonClicked"  Content="+"/>
+
+        <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="7"   Click="ButtonClicked"  Content="+/-"/>
+        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" FontWeight="Bold" Grid.Row="7"   Click="ButtonClicked"  Content="0"/>
+        <Button Grid.Column="2" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="7"   Click="ButtonClicked"  Content=","/>
+        <Button Grid.Column="3" Style="{StaticResource ButtonStyle}" FontWeight="Light" Grid.Row="7"   Click="ButtonClicked"  Content="="/>
+    </Grid>
+</Window>
