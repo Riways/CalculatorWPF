@@ -62,42 +62,58 @@
         <Button
             Grid.Row="2"
             Grid.Column="0"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="%"
             Content="%"
             FontWeight="Light" />
         <Button
             Grid.Row="2"
             Grid.Column="1"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="CE"
             Content="CE"
             FontWeight="Light" />
         <Button
             Grid.Row="2"
             Grid.Column="2"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="C"
             Content="C"
             FontWeight="Light" />
         <Button
             Grid.Row="2"
             Grid.Column="3"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="DEL"
             Content="DEL"
             FontWeight="Light" />
 
         <Button
             Grid.Row="3"
             Grid.Column="0"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="1/x"
             Content="1/x"
             FontWeight="Light" />
         <Button
             Grid.Row="3"
             Grid.Column="1"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="X^2"
             Content="X^2"
             FontWeight="Light" />
         <Button
             Grid.Row="3"
             Grid.Column="2"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="X^-2"
             Content="X^-2"
             FontWeight="Light" />
         <Button
             Grid.Row="3"
             Grid.Column="3"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="/"
             Content="/"
             FontWeight="Light" />
 
@@ -112,17 +128,21 @@
             Grid.Row="4"
             Grid.Column="1"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="8"
             Content="8"
             FontWeight="Bold" />
         <Button
             Grid.Row="4"
             Grid.Column="2"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="9"
             Content="9"
             FontWeight="Bold" />
         <Button
             Grid.Row="4"
             Grid.Column="3"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="*"
             Content="X"
             FontWeight="Light" />
 
@@ -130,23 +150,28 @@
             Grid.Row="5"
             Grid.Column="0"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="4"
             Content="4"
             FontWeight="Bold" />
         <Button
             Grid.Row="5"
             Grid.Column="1"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="5"
             Content="5"
             FontWeight="Bold" />
         <Button
             Grid.Row="5"
             Grid.Column="2"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="6"
             Content="6"
             FontWeight="Bold" />
         <Button
             Grid.Row="5"
             Grid.Column="3"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="-"
             Content="-"
             FontWeight="Light" />
 
@@ -154,45 +179,56 @@
             Grid.Row="6"
             Grid.Column="0"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="1"
             Content="1"
             FontWeight="Bold" />
         <Button
             Grid.Row="6"
             Grid.Column="1"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="2"
             Content="2"
             FontWeight="Bold" />
         <Button
             Grid.Row="6"
             Grid.Column="2"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="3"
             Content="3"
             FontWeight="Bold" />
         <Button
             Grid.Row="6"
             Grid.Column="3"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="+"
             Content="+"
             FontWeight="Light" />
 
         <Button
             Grid.Row="7"
             Grid.Column="0"
+            Command="{Binding InsertedOperatorCommand}"
             Content="+/-"
             FontWeight="Light" />
         <Button
             Grid.Row="7"
             Grid.Column="1"
             Command="{Binding InsertedNumberCommand}"
+            CommandParameter="0"
             Content="0"
             FontWeight="Bold" />
         <Button
             Grid.Row="7"
             Grid.Column="2"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter=","
             Content=","
             FontWeight="Light" />
         <Button
             Grid.Row="7"
             Grid.Column="3"
+            Command="{Binding InsertedOperatorCommand}"
+            CommandParameter="="
             Content="="
             FontWeight="Light" />
     </Grid>

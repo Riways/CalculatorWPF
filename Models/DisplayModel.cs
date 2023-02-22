@@ -10,7 +10,7 @@ namespace Calculator.Models
 {
     internal class DisplayModel : INotifyPropertyChanged
     {
-        private string _currentInput = "32";
+        private string _currentInput = "0";
         private string _previousOperand = String.Empty;
         private string _operator = String.Empty;
 

@@ -19,7 +19,7 @@ namespace Calculator.ViewModels
         public ICommand InsertedNumberCommand { get; }
         public ICommand InsertedOperatorCommand { get; }
         public ICommand InsertedSingularCommand { get; }
-        public DisplayModel Display = new();
+        public DisplayModel Display { get; set; } = new();
 
         private void OnInsertedNumberCommandExecuted(object o)
         {
@@ -29,10 +29,10 @@ namespace Calculator.ViewModels
                 Display.CurrentInput = number;
                 return;
             }
-            Display.CurrentInput += $"{number}{Display.Operator}";
+            Display.CurrentInput += number.ToString();
         }
 
-        private void OnInsertedOperatorCommand(object o)
+        private void OnInsertedOperatorCommandExecuted(object o)
         {
             if(Display.PreviousOperand == String.Empty)
                 Display.PreviousOperand = "0";
@@ -57,7 +57,7 @@ namespace Calculator.ViewModels
             }
         }
 
-        private void OnInsertedSingularCommand(object o)
+        private void OnInsertedSingularCommandExecuted(object o)
         {
             if (Display.CurrentInput.Equals("0"))
                 return;
@@ -104,8 +104,8 @@ namespace Calculator.ViewModels
         {
             #region Commands
             InsertedNumberCommand = new LambdaCommand(OnInsertedNumberCommandExecuted);
-            InsertedNumberCommand = new LambdaCommand(OnInsertedOperatorCommand);
-            InsertedNumberCommand = new LambdaCommand(OnInsertedSingularCommand);
+            InsertedOperatorCommand = new LambdaCommand(OnInsertedOperatorCommandExecuted);
+            InsertedSingularCommand = new LambdaCommand(OnInsertedSingularCommandExecuted);
             #endregion
         }
     }
