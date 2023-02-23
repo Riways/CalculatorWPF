@@ -49,8 +49,7 @@ namespace Calculator.ViewModels
                 case "=":
                     if (Display.Operator != String.Empty)
                     {
-                        Calculate(Display.Operator);
-                        Display.CurrentInput = Display.PreviousOperand;
+                        Display.CurrentInput = Calculate(Display.Operator).ToString();
                         Display.PreviousOperand = String.Empty;
                         Display.Operator = String.Empty;
                         return;
@@ -66,37 +65,31 @@ namespace Calculator.ViewModels
                         return;
                     }
                     return;
-                    Calculate(operatr);
+                    Display.CurrentInput =  Calculate(operatr).ToString();
                     break;
             }
             Display.Operator = operatr;
             Display.CurrentInput = "0";
         }
 
-        public void Calculate(string operatr)
+        public double Calculate(string operatr)
         {
             double prevOperandAsDouble = Double.Parse(Display.PreviousOperand);
             double currentInputAsDouble = Double.Parse(Display.CurrentInput);
             switch (operatr)
             {
                 case "/":
-                    Display.PreviousOperand = (prevOperandAsDouble / currentInputAsDouble).ToString();
-                    break;
+                    return (prevOperandAsDouble / currentInputAsDouble);
                 case "*":
-                    Display.PreviousOperand = (prevOperandAsDouble * currentInputAsDouble).ToString();
-                    break;
+                    return (prevOperandAsDouble * currentInputAsDouble);
                 case "-":
-                    Display.PreviousOperand = (prevOperandAsDouble - currentInputAsDouble).ToString();
-                    break;
+                    return (prevOperandAsDouble - currentInputAsDouble);
                 case "%":
-                    Display.PreviousOperand = (prevOperandAsDouble % currentInputAsDouble).ToString();
-                    break;
+                    return (prevOperandAsDouble % currentInputAsDouble);
                 case "+":
-                    Display.PreviousOperand = (prevOperandAsDouble + currentInputAsDouble).ToString();
-                    break;
+                    return (prevOperandAsDouble + currentInputAsDouble);
                 default:
-                    Display.CurrentInput = "DEBUG";
-                    break;
+                    return 0;
             }
         }
 
