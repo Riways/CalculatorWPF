@@ -2,14 +2,7 @@
 using Calculator.Models;
 using Calculator.ViewModels.Base;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Calculator.ViewModels
@@ -20,6 +13,15 @@ namespace Calculator.ViewModels
         public ICommand InsertedOperatorCommand { get; }
         public ICommand InsertedSingularCommand { get; }
         public DisplayModel Display { get; set; } = new();
+
+        public MainViewModel()
+        {
+            #region Commands
+            InsertedNumberCommand = new LambdaCommand(OnInsertedNumberCommandExecuted);
+            InsertedOperatorCommand = new LambdaCommand(OnInsertedOperatorCommandExecuted);
+            InsertedSingularCommand = new LambdaCommand(OnInsertedSingularCommandExecuted);
+            #endregion
+        }
 
         private void OnInsertedNumberCommandExecuted(object o)
         {
@@ -34,25 +36,54 @@ namespace Calculator.ViewModels
 
         private void OnInsertedOperatorCommandExecuted(object o)
         {
-            if(Display.PreviousOperand == String.Empty)
-                Display.PreviousOperand = "0";
-            Display.Operator = (string)o;
-            DataTable dataTable = new DataTable();
-            switch (Display.Operator)
+            string operatr = (string)o;
+            if (Display.PreviousOperand == String.Empty)
             {
-                case "+/-":
-                    Display.CurrentInput = (-Double.Parse(Display.CurrentInput)).ToString();
-                    break;
-                case ",":
-                    if (!Display.CurrentInput.Contains(","))
-                        Display.CurrentInput += ",";
-                    break;
+                Display.PreviousOperand = Display.CurrentInput;
+                Display.CurrentInput = "0";
+                Display.Operator = operatr;
+                return;
+            }
+            switch (operatr)
+            {
                 case "=":
                     if (Display.Operator != String.Empty)
-                        Display.CurrentInput = (string)dataTable.Compute($"{Display.PreviousOperand}{Display.Operator}{Display.CurrentInput}", ""); ;
+                    {
+                        Calculate(Display.Operator);
+                        Display.CurrentInput = Display.PreviousOperand;
+                        Display.PreviousOperand = String.Empty;
+                        Display.Operator = String.Empty;
+                        return;
+                    }
                     break;
                 default:
-                    Display.CurrentInput = (string)dataTable.Compute($"{Display.PreviousOperand}{Display.Operator}{Display.CurrentInput}","");
+                    Calculate(operatr);
+                    break;
+            }
+            Display.Operator = operatr;
+            Display.CurrentInput = "0";
+        }
+
+        public void Calculate(string operatr)
+        {
+            double prevOperandAsDouble = Double.Parse(Display.PreviousOperand);
+            double currentInputAsDouble = Double.Parse(Display.CurrentInput);
+            switch (operatr)
+            {
+                case "/":
+                    Display.PreviousOperand = (prevOperandAsDouble / currentInputAsDouble).ToString();
+                    break;
+                case "*":
+                    Display.PreviousOperand = (prevOperandAsDouble * currentInputAsDouble).ToString();
+                    break;
+                case "-":
+                    Display.PreviousOperand = (prevOperandAsDouble - currentInputAsDouble).ToString();
+                    break;
+                case "+":
+                    Display.PreviousOperand = (prevOperandAsDouble + currentInputAsDouble).ToString();
+                    break;
+                default:
+                    Display.CurrentInput = "DEBUG";
                     break;
             }
         }
@@ -66,11 +97,11 @@ namespace Calculator.ViewModels
             {
                 case "CE":
                     Display.CurrentInput = "0";
-                    Display.PreviousOperand = String.Empty;
-                    Display.Operator = String.Empty;
                     break;
                 case "C":
                     Display.CurrentInput = "0";
+                    Display.PreviousOperand = String.Empty;
+                    Display.Operator = String.Empty;
                     break;
                 case "DEL":
                     if (Display.CurrentInput == "0")
@@ -93,20 +124,17 @@ namespace Calculator.ViewModels
                 case "X^-2":
                     Display.CurrentInput = Math.Sqrt(currInputAsNum).ToString();
                     break;
+                case "+/-":
+                    Display.CurrentInput = (-Double.Parse(Display.CurrentInput)).ToString();
+                    break;
+                case ",":
+                    if (!Display.CurrentInput.Contains(","))
+                        Display.CurrentInput += ",";
+                    break;
                 default:
                     Display.CurrentInput = "0";
                     break;
             }
-            Display.CurrentInput += (string)o;
-        }
-
-        public MainViewModel()
-        {
-            #region Commands
-            InsertedNumberCommand = new LambdaCommand(OnInsertedNumberCommandExecuted);
-            InsertedOperatorCommand = new LambdaCommand(OnInsertedOperatorCommandExecuted);
-            InsertedSingularCommand = new LambdaCommand(OnInsertedSingularCommandExecuted);
-            #endregion
         }
     }
 }

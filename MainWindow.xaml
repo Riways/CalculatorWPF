@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Calculator.ViewModels"
     Title="Calc"
-    Width="300 "
+    Width="520 "
     Height="450"
     MaxWidth="520"
     MaxHeight="520"
@@ -56,7 +56,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="4"
             HorizontalAlignment="Right"
-            FontSize="40"
+            FontSize="25"
             Text="{Binding Display.CurrentInput}" />
 
         <Button
@@ -207,7 +207,8 @@
         <Button
             Grid.Row="7"
             Grid.Column="0"
-            Command="{Binding InsertedOperatorCommand}"
+            Command="{Binding InsertedSingularCommand}"
+            CommandParameter="+/-"
             Content="+/-"
             FontWeight="Light" />
         <Button
@@ -220,7 +221,7 @@
         <Button
             Grid.Row="7"
             Grid.Column="2"
-            Command="{Binding InsertedOperatorCommand}"
+            Command="{Binding InsertedSingularCommand}"
             CommandParameter=","
             Content=","
             FontWeight="Light" />
