@@ -64,12 +64,11 @@ namespace Calculator.ViewModels
                         Display.Operator = operatr;
                         return;
                     }
-                    return;
-                    Display.CurrentInput =  Calculate(operatr).ToString();
+                    Display.PreviousOperand =  Calculate(operatr).ToString();
+                    Display.Operator = operatr;
+                    Display.CurrentInput = "0";
                     break;
             }
-            Display.Operator = operatr;
-            Display.CurrentInput = "0";
         }
 
         public double Calculate(string operatr)
