@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accessibility;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -29,6 +30,7 @@ namespace Calculator.Models
             set
             {
                 _previousOperand = value;
+                _previousOperand =  _previousOperand.TrimEnd(',');
                 OnPropertyChanged();
             }
         }

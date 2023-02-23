@@ -37,7 +37,7 @@ namespace Calculator.ViewModels
         private void OnInsertedOperatorCommandExecuted(object o)
         {
             string operatr = (string)o;
-            if (Display.PreviousOperand == String.Empty)
+            if (Display.PreviousOperand == String.Empty && !operatr.Equals("="))
             {
                 Display.PreviousOperand = Display.CurrentInput;
                 Display.CurrentInput = "0";
@@ -55,8 +55,17 @@ namespace Calculator.ViewModels
                         Display.Operator = String.Empty;
                         return;
                     }
-                    break;
+                    else
+                    {
+                        return;
+                    }
                 default:
+                    if (Display.CurrentInput.Equals("0"))
+                    {
+                        Display.Operator = operatr;
+                        return;
+                    }
+                    return;
                     Calculate(operatr);
                     break;
             }
@@ -79,6 +88,9 @@ namespace Calculator.ViewModels
                 case "-":
                     Display.PreviousOperand = (prevOperandAsDouble - currentInputAsDouble).ToString();
                     break;
+                case "%":
+                    Display.PreviousOperand = (prevOperandAsDouble % currentInputAsDouble).ToString();
+                    break;
                 case "+":
                     Display.PreviousOperand = (prevOperandAsDouble + currentInputAsDouble).ToString();
                     break;
@@ -90,8 +102,6 @@ namespace Calculator.ViewModels
 
         private void OnInsertedSingularCommandExecuted(object o)
         {
-            if (Display.CurrentInput.Equals("0"))
-                return;
             double currInputAsNum = Double.Parse(Display.CurrentInput);
             switch ((string)o)
             {
